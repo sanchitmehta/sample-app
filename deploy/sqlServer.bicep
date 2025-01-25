@@ -30,5 +30,4 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
     }
 }
 
-output sqlServerName string = sqlServer.name
-output sqlDatabaseName string = sqlDatabase.name
+output sqlServerFqdn string = sqlServer.properties.fullyQualifiedDomainName
