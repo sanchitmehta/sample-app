@@ -6,6 +6,7 @@ name: Build and deploy ASP app to Azure Web App - oa-demo-web-ruslany
 on:
   push:
     branches:
+      - main
       - addsqlapp
   workflow_dispatch:
 
