@@ -1,4 +1,5 @@
 param sqlServerName string
+
 param sqlAdminUsername string
 @secure()
 param sqlAdminPassword string
@@ -27,6 +28,15 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
         name: 'S0'
         tier: 'Standard'
         capacity: 10
+    }
+}
+
+resource allowAzureServices 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
+    parent: sqlServer
+    name: 'AllowAllWindowsAzureIps'
+    properties: {
+        startIpAddress: '0.0.0.0'
+        endIpAddress: '255.255.255.255'
     }
 }
 
