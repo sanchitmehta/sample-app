@@ -3,6 +3,9 @@ param (
     [string]$subscriptionId,
 
     [Parameter(Mandatory=$true)]
+    [string]$resourceGroupName,
+
+    [Parameter(Mandatory=$true)]
     [string]$developerUserName,
 
     [Parameter(Mandatory=$true)]
@@ -10,7 +13,6 @@ param (
 )
 
 # Define variables
-$resourceGroupName = "sample-app-rg"
 $templateFile = "./deploy/deployAll.bicep"
 $deploymentName = "sample-app-deployment"
 
