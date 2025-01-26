@@ -1,18 +1,1 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-
-}
+dXNpbmcgTWljcm9zb2Z0LkFzcE5ldENvcmUuSG9zdGluZzsKdXNpbmcgTWljcm9zb2Z0LkV4dGVuc2lvbnMuSG9zdGluZzsKdXNpbmcgQXp1cmUuSWRlbnRpdHk7CnVzaW5nIFN5c3RlbS5EYXRhLlNxbENsaWVudDsKCnB1YmxpYyBjbGFzcyBQcm9ncmFtCnsKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBNYWluKHN0cmluZ1tdIGFyZ3MpCiAgICB7CiAgICAgICAgdmFyIGNyZWRlbnRpYWwgPSBuZXcgRGVmYXVsdEF6dXJlQ3JlZGVudGlhbCgpOwogICAgICAgIHZhciBjb25uZWN0aW9uU3RyaW5nID0gIlNlcnZlcj10ZXN0c2VydmVyO0RhdGFiYXNlPXRlc3RkYjtBdXRoZW50aWNhdGlvbj1BY3RpdmUgRGlyZWN0b3J5IERlZmF1bHQ7VHJ1c3RTZXJ2ZXJDZXJ0aWZpY2F0ZT1UcnVlOyI7CgogICAgICAgIHVzaW5nICh2YXIgY29ubmVjdGlvbiA9IG5ldyBTcWxDb25uZWN0aW9uKGNvbm5lY3Rpb25TdHJpbmcpKQogICAgICAgIHsKICAgICAgICAgICAgY29ubmVjdGlvbi5BY2Nlc3NUb2tlbiA9IGNyZWRlbnRpYWwuR2V0VG9rZW4oCiAgICAgICAgICAgICAgICBuZXcgQXp1cmUuQ29yZS5Ub2tlblJlcXVlc3RDb250ZXh0KG5ld1tdIHsgImh0dHBzOi8vZGF0YWJhc2Uud2luZG93cy5uZXQvLmRlZmF1bHQiIH0pCiAgICAgICAgICAgICkuVG9rZW47CgogICAgICAgICAgICBjb25uZWN0aW9uLk9wZW4oKTsKICAgICAgICAgICAgLy8gQ29ubmVjdGlvbiBpcyByZWFkeSB0byB1c2UgZm9yIGRhdGFiYXNlIG9wZXJhdGlvbnMKICAgICAgICB9CgogICAgICAgIENyZWF0ZUhvc3RCdWlsZGVyKGFyZ3MpLkJ1aWxkKCkuUnVuKCk7CiAgICB9CgogICAgcHVibGljIHN0YXRpYyBJSG9zdEJ1aWxkZXIgQ3JlYXRlSG9zdEJ1aWxkZXIoc3RyaW5nW10gYXJncykgPT4KICAgICAgICBIb3N0LkNyZWF0ZURlZmF1bHRCdWlsZGVyKGFyZ3MpCiAgICAgICAgICAgIC5Db25maWd1cmVXZWJIb3N0RGVmYXVsdHMod2ViQnVpbGRlciA9PgogICAgICAgICAgICB7CiAgICAgICAgICAgICAgICB3ZWJCdWlsZGVyLlVzZVN0YXJ0dXA8U3RhcnR1cD4oKTsKICAgICAgICAgICAgfSk7Cn0=
