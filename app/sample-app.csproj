@@ -1,16 +1,1 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0" />
-  </ItemGroup>
-
-</Project>
+YGBgeG1sCjxQcm9qZWN0IFNkaz0iTWljcm9zb2Z0Lk5FVC5TZGsuV2ViIj4KCiAgPFByb3BlcnR5R3JvdXA+CiAgICA8VGFyZ2V0RnJhbWV3b3JrPm5ldDYuMDwvVGFyZ2V0RnJhbWV3b3JrPgogIDwvUHJvcGVydHlHcm91cD4KCiAgPEl0ZW1Hcm91cD4KICAgIDxQYWNrYWdlUmVmZXJlbmNlIEluY2x1ZGU9Ik1pY3Jvc29mdC5Bc3BOZXRDb3JlLkRpYWdub3N0aWNzLkVudGl0eUZyYW1ld29ya0NvcmUiIFZlcnNpb249IjYuMC4wIiAvPgogICAgPFBhY2thZ2VSZWZlcmVuY2UgSW5jbHVkZT0iTWljcm9zb2Z0LkFzcE5ldENvcmUuSWRlbnRpdHkuRW50aXR5RnJhbWV3b3JrQ29yZSIgVmVyc2lvbj0iNi4wLjAiIC8+CiAgICA8UGFja2FnZVJlZmVyZW5jZSBJbmNsdWRlPSJNaWNyb3NvZnQuQXNwTmV0Q29yZS5JZGVudGl0eS5VSSIgVmVyc2lvbj0iNi4wLjAiIC8+CiAgICA8UGFja2FnZVJlZmVyZW5jZSBJbmNsdWRlPSJNaWNyb3NvZnQuRW50aXR5RnJhbWV3b3JrQ29yZS5TcWxTZXJ2ZXIiIFZlcnNpb249IjYuMC4wIiAvPgogICAgPFBhY2thZ2VSZWZlcmVuY2UgSW5jbHVkZT0iTWljcm9zb2Z0LkVudGl0eUZyYW1ld29ya0NvcmUuVG9vbHMiIFZlcnNpb249IjYuMC4wIiAvPgogICAgPFBhY2thZ2VSZWZlcmVuY2UgSW5jbHVkZT0iTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5XZWIuQ29kZUdlbmVyYXRpb24uRGVzaWduIiBWZXJzaW9uPSI2LjAuMCIgLz4KICAgIDxQYWNrYWdlUmVmZXJlbmNlIEluY2x1ZGU9IkF6dXJlLklkZW50aXR5IiBWZXJzaW9uPSIxLjguMCIgLz4KICA8L0l0ZW1Hcm91cD4KCjwvUHJvamVjdD4KYGBg
