@@ -1,3 +1,4 @@
+```csharp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +17,34 @@
         </nav>
     </header>
     <div class="container">
-        @RenderBody()
+        @using (Html.RenderBody())
+        {
+            // Ensure RenderBody is properly disposed of
+        }
     </div>
     <footer>
         <p>&copy; 2023 - My ASP.NET Core App</p>
     </footer>
     <script src="~/js/site.js"></script>
+    @await DisposeScriptsAsync()
 </body>
 </html>
+
+@functions {
+    public override void Dispose()
+    {
+        // Implement disposal logic for IDisposable dependencies, if any exist
+        if (ViewData != null)
+        {
+            ViewData.Clear();
+        }
+    }
+
+    private async Task DisposeScriptsAsync()
+    {
+        // Example of cleaning and releasing resources after use
+        // Dispose of large collections or objects like Cache, Data tables, etc.
+        await Task.CompletedTask;
+    }
+}
+```
