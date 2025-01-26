@@ -1,0 +1,1 @@
+Add Managed Identity implementation suggestions
