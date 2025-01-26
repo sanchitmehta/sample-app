@@ -1,3 +1,4 @@
+```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
@@ -13,4 +14,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <!-- Ensure server garbage collection for better memory management -->
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
+
+  <Target Name="PostBuildActions" AfterTargets="PostBuildEvent">
+    <!-- Add tools such as memory profilers to a development build for debugging leaks -->
+    <Exec Command="dotnet add package Microsoft.Diagnostics.Memory" />
+  </Target>
+
 </Project>
+```
