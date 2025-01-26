@@ -1,3 +1,4 @@
+```csharp
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using SampleApp.Models;
@@ -6,9 +7,10 @@ using System.Collections.Generic;
 
 namespace SampleApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller, IDisposable
     {
         private readonly string connectionString;
+        private bool disposed = false;
 
         public HomeController()
         {
@@ -22,11 +24,11 @@ namespace SampleApp.Controllers
 
         public IActionResult Index()
         {
-            var model = new HomeModel
+            using (var model = new HomeModel())
             {
-                Products = GetProducts()
-            };
-            return View(model);
+                model.Products = GetProducts();
+                return View(model);
+            }
         }
 
         private List<Product> GetProducts()
@@ -36,22 +38,50 @@ namespace SampleApp.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT TOP 10 ProductId, Name, ListPrice FROM [SalesLT].[Product]", connection);
-                using (var reader = command.ExecuteReader())
+                using (var command = new SqlCommand("SELECT TOP 10 ProductId, Name, ListPrice FROM [SalesLT].[Product]", connection))
                 {
-                    while (reader.Read())
+                    using (var reader = command.ExecuteReader())
                     {
-                        products.Add(new Product
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(0),
-                            Name = reader.GetString(1),
-                            Price = reader.GetDecimal(2)
-                        });
+                            products.Add(new Product
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2)
+                            });
+                        }
                     }
                 }
             }
 
             return products;
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Dispose managed resources here.
+                }
+
+                // Free any unmanaged resources here, if any.
+                disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~HomeController()
+        {
+            Dispose(false);
+        }
     }
 }
+```
