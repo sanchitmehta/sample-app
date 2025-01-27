@@ -21,3 +21,4 @@ $env:LOCATION = "<your location here>"
 ## Setup the github deployment from that repository
 
 Use Azure Portal Deployment Center to setup the deployment from your github repository.
+
