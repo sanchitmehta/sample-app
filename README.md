@@ -18,6 +18,8 @@ $env:LOCATION = "<your location here>"
 .\deploy.ps1 -subscriptionId $env:SUBSCRIPTION_ID -resourceGroupName $env:RESOURCE_GROUP_NAME -developerUserName $env:DEVELOPER_USERNAME -location $env:LOCATION
 ```
 
+
+
 ## Setup the github deployment from that repository
 
 Use Azure Portal Deployment Center to setup the deployment from your github repository.
