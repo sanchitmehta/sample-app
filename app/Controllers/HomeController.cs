@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Azure.Identity;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,7 @@ namespace SampleApp.Controllers
 
         public HomeController()
         {
-            var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
-            if (string.IsNullOrEmpty(envConnectionString))
-            {
-                throw new InvalidOperationException("Environment variable SQL_CONNECTION_STRING is not set.");
-            }
-            connectionString = envConnectionString;
+            connectionString = "Server=<SQL_SERVER_PLACEHOLDER>;Database=<DATABASE_PLACEHOLDER>;Authentication=Active Directory Default;TrustServerCertificate=True;";
         }
 
         public IActionResult Index()
@@ -33,8 +29,11 @@ namespace SampleApp.Controllers
         {
             var products = new List<Product>();
 
+            var tokenCredential = new DefaultAzureCredential();
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.AccessToken = tokenCredential.GetToken(
+                    new Azure.Core.TokenRequestContext(new[] { "https://database.windows.net/" })).Token;
                 connection.Open();
                 var command = new SqlCommand("SELECT TOP 10 ProductId, Name, ListPrice FROM [SalesLT].[Product]", connection);
                 using (var reader = command.ExecuteReader())
