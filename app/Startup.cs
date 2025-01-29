@@ -2,12 +2,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Data.SqlClient;
+using Azure.Identity;
 
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllersWithViews();
+
+        var connectionString = "Server=unspecified.sql.server;Database=unspecified_database;Authentication=Active Directory Default;TrustServerCertificate=True;";
+        var options = new SqlConnectionStringBuilder(connectionString);
+        var credential = new DefaultAzureCredential();
+        services.AddTransient(_ => new SqlConnection(options.ConnectionString, credential));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
