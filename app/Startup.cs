@@ -1,21 +1,12 @@
-using Azure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Data.SqlClient;
 
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        var connectionStringBuilder = new SqlConnectionStringBuilder
-        {
-            ConnectionString = "Server=oa-demo-sql-sanchit.database.windows.net;Database=products;Authentication=Active Directory Default;TrustServerCertificate=True;"
-        };
-
-        var credential = new DefaultAzureCredential();
-        services.AddSingleton(new SqlConnection(connectionStringBuilder.ConnectionString));
         services.AddControllersWithViews();
     }
 
