@@ -19,7 +19,7 @@ public class Startup
     {
         services.AddControllersWithViews();
 
-        var connectionString = _configuration.GetConnectionString("SqlConnection");
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
         var sqlConnection = new SqlConnection(connectionString)
         {
             AccessToken = new DefaultAzureCredential().GetToken(
