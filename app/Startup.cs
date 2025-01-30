@@ -2,11 +2,28 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Data.SqlClient;
+using Azure.Identity;
 
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddSingleton(_ =>
+        {
+            var connectionStringBuilder = new SqlConnectionStringBuilder
+            {
+                ConnectionString = "Server=oa-demo-sql-mnilsen.database.windows.net;Database=products;Authentication=Active Directory Default;TrustServerCertificate=True;"
+            };
+
+            return new SqlConnection(connectionStringBuilder.ConnectionString)
+            {
+                AccessToken = new DefaultAzureCredential().GetToken(
+                    new Azure.Core.TokenRequestContext(new[] { "https://database.windows.net//.default" })
+                ).Token
+            };
+        });
+
         services.AddControllersWithViews();
     }
 
