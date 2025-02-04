@@ -28,8 +28,13 @@ if (-not $sqlAdminPassword) {
 # Login to Azure
 az account set --subscription $subscriptionId
 
+# Check if resource group exists
+$resourceGroup = az group show --name $resourceGroupName --query "name" --output tsv
+
 # Create resource group if it doesn't exist
-az group create --name $resourceGroupName --location $location
+if (-not $resourceGroup) {
+    az group create --name $resourceGroupName --location $location
+}
 
 # Deploy the Bicep template
 az deployment group create `

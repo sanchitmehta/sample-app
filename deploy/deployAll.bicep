@@ -1,5 +1,5 @@
 @minLength(1)
-@maxLength(8)
+@maxLength(15)
 @description('Your username here, fellow developer.')
 param developerUsername string
 
