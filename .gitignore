@@ -18,6 +18,7 @@ mono_crash.*
 !.vscode/launch.json
 !.vscode/extensions.json
 .vscode/*
+.vs/*
 
 # User-specific files (JetBrains Rider)
 .idea/*
