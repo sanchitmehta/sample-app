@@ -4,7 +4,8 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__DefaultConnection": "Server=oa-demo-sql-stage.database.windows.net;Database=products;Authentication=Active Directory Default;TrustServerCertificate=True;"
       },
       "applicationUrl": "https://localhost:54191;http://localhost:54192"
     }
