@@ -3,6 +3,8 @@ using Microsoft.Data.SqlClient;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
+using Azure.Identity;
+using Azure.Core;
 
 namespace SampleApp.Controllers
 {
@@ -35,6 +37,8 @@ namespace SampleApp.Controllers
 
             using (var connection = new SqlConnection(connectionString))
             {
+                var credential = new DefaultAzureCredential();
+                connection.AccessToken = credential.GetToken(new TokenRequestContext(new[] { "https://database.windows.net/.default" })).Token;
                 connection.Open();
                 var command = new SqlCommand("SELECT TOP 10 ProductId, Name, ListPrice FROM [SalesLT].[Product]", connection);
                 using (var reader = command.ExecuteReader())
