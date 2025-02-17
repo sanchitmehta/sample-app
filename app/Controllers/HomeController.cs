@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Azure.Identity;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
@@ -10,20 +9,16 @@ namespace SampleApp.Controllers
     public class HomeController : Controller
     {
         private readonly string connectionString;
-        private readonly DefaultAzureCredential defaultAzureCredential;
 
         public HomeController()
         {
-            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;Authentication=Active Directory Default;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;User ID=sqladmin;Password=<password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
             var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
             if (string.IsNullOrEmpty(envConnectionString))
             {
                 throw new InvalidOperationException("Environment variable SQL_CONNECTION_STRING is not set.");
             }
             connectionString = envConnectionString;
-
-            // Initialize DefaultAzureCredential (ensure Azure.Identity version 1.12.1 or higher is used)
-            defaultAzureCredential = new DefaultAzureCredential();
         }
 
         public IActionResult Index()
