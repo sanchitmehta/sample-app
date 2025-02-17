@@ -3,18 +3,15 @@ using Microsoft.Data.SqlClient;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
-using Azure.Identity;
 
 namespace SampleApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly string connectionString;
-        private readonly DefaultAzureCredential credential;
 
         public HomeController()
         {
-            credential = new DefaultAzureCredential();
             var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
             if (string.IsNullOrEmpty(envConnectionString))
             {
