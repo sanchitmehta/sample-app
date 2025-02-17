@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Azure.Identity;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace SampleApp.Controllers
 
         public HomeController()
         {
+            // Instantiate DefaultAzureCredential for Managed Identity
+            var credential = new DefaultAzureCredential();
             var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
             if (string.IsNullOrEmpty(envConnectionString))
             {
