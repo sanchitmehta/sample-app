@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
+using Azure.Identity;
 
 namespace SampleApp.Controllers
 {
@@ -17,6 +18,8 @@ namespace SampleApp.Controllers
             {
                 throw new InvalidOperationException("Environment variable SQL_CONNECTION_STRING is not set.");
             }
+            // Initialize DefaultAzureCredential to enable Managed Identity support
+            var credential = new DefaultAzureCredential();
             connectionString = envConnectionString;
         }
 
