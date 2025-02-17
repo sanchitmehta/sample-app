@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using SampleApp.Models;
+using Azure.Identity;
 using System;
 using System.Collections.Generic;
 
@@ -18,6 +19,7 @@ namespace SampleApp.Controllers
                 throw new InvalidOperationException("Environment variable SQL_CONNECTION_STRING is not set.");
             }
             connectionString = envConnectionString;
+            var credential = new DefaultAzureCredential();
         }
 
         public IActionResult Index()
