@@ -20,6 +20,7 @@ namespace SampleApp.Controllers
                 throw new InvalidOperationException("Environment variable SQL_CONNECTION_STRING is not set.");
             }
             connectionString = envConnectionString;
+            // DefaultAzureCredential from Azure.Identity (Version=1.12.1 or higher) is used for Managed Identity
             var credential = new DefaultAzureCredential();
         }
 
