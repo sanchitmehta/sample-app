@@ -1,16 +1,56 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
+using Azure.Identity;  // Added for Managed Identity via DefaultAzureCredential
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-  </PropertyGroup>
+class Program
+{
+    static void Main()
+    {
+        // Use environment variable for SQL Connection string.
+        // Connection string updated to use Active Directory Default authentication e.g. 
+        // Connection String Format: "Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;Authentication=Active Directory Default;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        var connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            Console.WriteLine("SQL_CONNECTION_STRING environment variable is not set.");
+            return;
+        }
+        
+        // Instantiate DefaultAzureCredential for Managed Identity scenarios.
+        // Although not passed to SqlConnection since connection string handles authentication.
+        var credential = new DefaultAzureCredential();
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="Azure.Identity" Version="1.12.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0" />
-  </ItemGroup>
+        var products = new List<Product>();
 
-</Project>
+        using (var connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            var command = new SqlCommand("SELECT TOP 10 ProductId, Name, ListPrice FROM [SalesLT].[Product]", connection);
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    products.Add(new Product
+                    {
+                        Id = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Price = reader.GetDecimal(2)
+                    });
+                }
+            }
+        }
+        
+        foreach (var product in products)
+        {
+            Console.WriteLine($"ID: {product.Id}, Name: {product.Name}, Price: {product.Price}");
+        }
+    }
+}
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
