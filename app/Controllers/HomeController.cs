@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Azure.Identity;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ namespace SampleApp.Controllers
 
         public HomeController()
         {
-            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;Authentication=Active Directory Default;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;User ID=sqladmin;Password=<password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
             var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
             if (string.IsNullOrEmpty(envConnectionString))
             {
