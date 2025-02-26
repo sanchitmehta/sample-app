@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using SampleApp.Models;
 using System;
 using System.Collections.Generic;
-using Azure.Identity;
 
 namespace SampleApp.Controllers
 {
@@ -13,9 +12,7 @@ namespace SampleApp.Controllers
 
         public HomeController()
         {
-            // Using Active Directory Default for Managed Identity SQL Server authentication
-            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;Authentication=Active Directory Default;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-            var azureCredential = new DefaultAzureCredential();
+            // eg: Server=tcp:<server>,1433;Initial Catalog=<database-name>;Persist Security Info=False;User ID=sqladmin;Password=<password>;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
             var envConnectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
             if (string.IsNullOrEmpty(envConnectionString))
             {
